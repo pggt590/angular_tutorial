@@ -1,0 +1,31 @@
+<div class="header">
+  <img src="angular_wordmark_gradient.png" alt="Angular Logo" class="angular-logo">
+
+</div>
+
+<div class="blog-container">
+  <h1>Crear un Tutorial de Angular</h1>
+  <div *ngFor="let section of tutorialSections" class="blog-section">
+    <h2>{{ section.title }}</h2>
+    <p>{{ section.content }}</p>
+    <!-- Mostrar el bloque de código solo si hay código -->
+    <pre *ngIf="section.code">
+      <code class="hljs">{{ section.code }}</code>
+    </pre>
+  </div>
+</div>
+
+<!-- Pie de página -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2024 Tutorial Angular. Todos los derechos reservados.</p>
+    <div class="footer-social">
+      <a href="https://twitter.com/angular" target="_blank" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://github.com/angular" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
