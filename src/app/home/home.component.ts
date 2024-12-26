@@ -126,12 +126,29 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
+      "title": "Configurar Rutas",
+      "content": "En esta sección, aprenderás a configurar las rutas en Angular utilizando la nueva característica de componentes autónomos, sin necesidad de un módulo tradicional. Vamos a crear las rutas necesarias para cargar el `HomeComponent` como la vista principal.",
+      "subSections": [
+        {
+          "title": "Crear archivo de rutas",
+          "content": "Primero, crea un archivo llamado `routes.ts` en la carpeta `app`. Este archivo contendrá las rutas de la aplicación. En él, definimos las rutas necesarias para cargar el componente `HomeComponent`.",
+          "code": "import { Routes } from '@angular/router';\nimport { HomeComponent } from './home/home.component';\n\nexport const routes: Routes = [\n  { path: '', component: HomeComponent },\n];"
+        },
+        {
+          "title": "Configurar enrutamiento en el componente principal",
+          "content": "En lugar de un `app.module.ts`, configuramos el enrutamiento directamente en el componente principal (`HomeComponent`), importando y configurando el `RouterModule` dentro de su metadata.",
+          "code": "import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\nimport { HomeComponent } from './home/home.component';\nimport { routes } from './routes';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterModule.forRoot(routes), HomeComponent],\n  template: `<router-outlet></router-outlet>`,\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {}"
+        }
+      ]
+    }
+    ,
+    {
       "title": "Ver los Resultados",
-      "content": "Ahora que has hecho el cambio en `home.component.html`, guarda el archivo y regresa al navegador. Verás el mensaje '¡Hola Mundo desde Angular!' en la pantalla.",
+      "content": "Ahora que has configurado las rutas, guarda el archivo y abre la aplicación en el navegador. Verás que el `HomeComponent` se carga como la vista principal.",
       "subSections": [
         {
           "title": "Ver el resultado",
-          "content": "Cuando realices los cambios en el archivo HTML, el servidor de desarrollo debería recargar automáticamente la página.",
+          "content": "Cuando realices los cambios en las rutas, el servidor de desarrollo debería recargar automáticamente la página.",
           "code": "# El servidor de desarrollo debería recargar la página automáticamente."
         }
       ]
@@ -142,15 +159,16 @@ export class HomeComponent implements OnInit {
       "subSections": [
         {
           "title": "Alcance del tutorial",
-          "content": "Este tutorial cubre la instalación y configuración de Angular, la creación de un proyecto base, la adición de componentes y la visualización de resultados en el navegador."
+          "content": "Este tutorial cubre la instalación y configuración de Angular, la creación de un proyecto base, la adición de componentes, la configuración de rutas y la visualización de resultados en el navegador."
         },
         {
           "title": "Objetivos conseguidos",
-          "content": "Al finalizar este tutorial, habrás adquirido conocimientos básicos sobre el framework Angular, incluidos sus conceptos fundamentales como la creación de componentes, el uso de Angular CLI y la visualización de aplicaciones en el navegador."
+          "content": "Al finalizar este tutorial, habrás adquirido conocimientos básicos sobre el framework Angular, incluidos sus conceptos fundamentales como la creación de componentes, el uso de Angular CLI, la configuración de rutas y la visualización de aplicaciones en el navegador."
         }
       ]
     }
   ]
+
 
 
 
