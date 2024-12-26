@@ -4,14 +4,23 @@
 </div>
 
 <div class="blog-container">
-  <h1>Crear un Tutorial de Angular</h1>
+  <h1>Crea un blog-tutorial con Angular</h1>
+
   <div *ngFor="let section of tutorialSections" class="blog-section">
     <h2>{{ section.title }}</h2>
     <p>{{ section.content }}</p>
-    <!-- Mostrar el bloque de código solo si hay código -->
-    <pre *ngIf="section.code">
-      <code class="hljs">{{ section.code }}</code>
-    </pre>
+
+    <div *ngIf="section.subSections">
+      <div *ngFor="let subSection of section.subSections" class="sub-section">
+        <h3>{{ subSection.title }}</h3>
+        <p>{{ subSection.content }}</p>
+
+        <!-- Mostrar el bloque de código solo si 'code' existe en la sub-sección -->
+        <pre *ngIf="subSection.code">
+          <code class="hljs">{{ subSection.code }}</code>
+        </pre>
+      </div>
+    </div>
   </div>
 </div>
 
