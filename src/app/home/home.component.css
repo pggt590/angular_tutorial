@@ -2,17 +2,17 @@
 .header {
   text-align: center;
   position: relative;
-  background-color: black; /* Fondo de color Angular (rojo) */
+  background-color: black;
   color: white;
-  padding: 20px;
+  padding: 0px;
 }
 
 .angular-logo {
-  max-width: 60%; /* Asegura que la imagen ocupe todo el ancho */
+  max-width: 40%; /* Asegura que la imagen ocupe todo el ancho */
   height: auto;
   display: block;
   margin: 0 auto 0px;
-  color: black;/* Centra la imagen y le da un margen inferior */
+  color: black;
   background-color: black;
 }
 
@@ -21,6 +21,8 @@
   font-weight: bold;
   margin: 0;
 }
+
+
 .blog-container {
   max-width: 800px;
   margin: 0 auto;
@@ -38,6 +40,48 @@
   border-left: 5px solid #ccc;
   overflow-x: auto;
 }
+
+.comments-section {
+  margin-top: 40px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.comment-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-submit:hover {
+  background-color: #0056b3;
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.comment small {
+  color: #888;
+}
+
 
 .footer {
   text-align: center;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import hljs from 'highlight.js'; //importamos para los bloques de código
 import 'highlight.js/styles/default.css'; // O el tema que prefieras
 
@@ -18,7 +19,8 @@ type Section = {
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -66,6 +68,22 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
+      "title": "Verificar Instalación",
+      "content": "Después de la instalación, es importante verificar que todo está funcionando correctamente.",
+      "subSections": [
+        {
+          "title": "Verificar Node.js y npm",
+          "content": "Para verificar que Node.js y npm están instalados correctamente, ejecuta los siguientes comandos:",
+          "code": "node -v\nnpm -v"
+        },
+        {
+          "title": "Verificar Angular CLI",
+          "content": "Verifica que Angular CLI se ha instalado correctamente ejecutando:",
+          "code": "ng version"
+        }
+      ]
+    },
+    {
       "title": "Crear un Proyecto Angular",
       "content": "Ahora que tenemos Angular CLI, creamos un nuevo proyecto Angular con el siguiente comando. Esto generará una nueva carpeta con todos los archivos necesarios.",
       "subSections": [
@@ -98,7 +116,7 @@ export class HomeComponent implements OnInit {
       "subSections": [
         {
           "title": "Editar app.component.html",
-          "content": "Edita el archivo `app.component.html` para cambiar el mensaje que se muestra en la vista principal.",
+          "content": "Edita el archivo `app.component.html` para cambiar el mensaje que se muestra.",
           "code": "<h1>¡Hola Mundo desde Angular!</h1>"
         }
       ]
@@ -121,7 +139,7 @@ export class HomeComponent implements OnInit {
         {
           "title": "Agregar lógica de resalte",
           "content": "En el archivo `home.component.ts`, importa `highlight.js` y configura la lógica para resaltar los bloques de código.",
-          "code": "import { Component, OnInit } from '@angular/core';\nimport { NgForOf, NgIf } from '@angular/common';\nimport hljs from 'highlight.js';\nimport 'highlight.js/styles/default.css';\n\n@Component({\n  selector: 'app-home',\n  standalone: true,\n  imports: [ NgForOf, NgIf ],\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.css']\n})\nexport class HomeComponent implements OnInit {\n  tutorialSections = [\n    {\n      \"title\": \"Instalación de Angular\",\n      \"content\": \"Para comenzar con Angular, primero necesitamos instalar Node.js y Angular CLI. Angular CLI es una herramienta de línea de comandos que facilita la creación y gestión de aplicaciones Angular.\",\n      \"code\": \"# Paso 1: Instalar Node.js\\n# Visita https://nodejs.org y descarga la versión LTS recomendada para tu sistema operativo.\"\n    },\n    {\n      \"title\": \"Instalar Angular CLI\",\n      \"content\": \"Una vez que Node.js y npm estén instalados, podemos instalar Angular CLI globalmente. Abre una terminal y ejecuta el siguiente comando:\",\n      \"code\": \"npm install -g @angular/cli\"\n    },\n    {\n      \"title\": \"Crear un Proyecto Angular\",\n      \"content\": \"Ahora que tenemos Angular CLI, creamos un nuevo proyecto Angular con el siguiente comando. Esto generará una nueva carpeta con todos los archivos necesarios.\",\n      \"code\": \"ng new mi-primera-app\\n# Responde a las preguntas de configuración del proyecto según tu preferencia (estilo CSS por defecto).\"\n    },\n    {\n      \"title\": \"Navegar al Proyecto\",\n      \"content\": \"Una vez creado el proyecto, navega a la carpeta del proyecto para comenzar a trabajar en él.\",\n      \"code\": \"cd mi-primera-app\"\n    },\n    {\n      \"title\": \"Ejecutar la Aplicación\",\n      \"content\": \"Ahora, vamos a ejecutar el servidor de desarrollo para ver la aplicación en el navegador. Esto arrancará el servidor en el puerto 4200 por defecto.\",\n      \"code\": \"ng serve\\n# Abre tu navegador y ve a http://localhost:4200 para ver la aplicación.\"\n    },\n    {\n      \"title\": \"Modificar el Componente Principal\",\n      \"content\": \"Para mostrar un mensaje personalizado, modificamos el archivo `app.component.html`. Reemplaza el contenido con el siguiente código para mostrar '¡Hola Mundo desde Angular!'.\",\n      \"code\": \"<h1>¡Hola Mundo desde Angular!</h1>\"\n    },\n    {\n      \"title\": \"Ver los Resultados\",\n      \"content\": \"Ahora que has hecho el cambio en `app.component.html`, guarda el archivo y regresa al navegador. Verás el mensaje '¡Hola Mundo desde Angular!' en la pantalla.\",\n      \"code\": \"# El servidor de desarrollo debería recargar la página automáticamente.\"\n    }\n  ];\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.highlightAllCode();\n  }\n\n  highlightAllCode(): void {\n    setTimeout(() => {\n      const codeBlocks = document.querySelectorAll('code');\n      codeBlocks.forEach(block => {\n        hljs.highlightElement(block as HTMLElement);\n      });\n    });\n  }\n}"
+          "code": "import { Component, OnInit } from '@angular/core';\nimport { NgForOf, NgIf } from '@angular/common';\nimport hljs from 'highlight.js';\nimport 'highlight.js/styles/default.css';\n\n@Component({\n  selector: 'app-home',\n  standalone: true,\n  imports: [ NgForOf, NgIf ],\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.css']\n})\nexport class HomeComponent implements OnInit {\n  tutorialSections = [ ... ];\n  constructor() {}\n  ngOnInit(): void {\n    this.highlightAllCode();\n  }\n  highlightAllCode(): void {\n    setTimeout(() => { ... });\n  }\n}"
         }
       ]
     },
@@ -140,8 +158,7 @@ export class HomeComponent implements OnInit {
           "code": "import { Component } from '@angular/core';\nimport { RouterModule } from '@angular/router';\nimport { HomeComponent } from './home/home.component';\nimport { routes } from './routes';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterModule.forRoot(routes), HomeComponent],\n  template: `<router-outlet></router-outlet>`,\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {}"
         }
       ]
-    }
-    ,
+    },
     {
       "title": "Ver los Resultados",
       "content": "Ahora que has configurado las rutas, guarda el archivo y abre la aplicación en el navegador. Verás que el `HomeComponent` se carga como la vista principal.",
@@ -154,28 +171,32 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
-      "title": "Conclusiones del tutorial",
-      "content": "Al finalizar este tutorial, habrás aprendido los aspectos fundamentales de Angular y cómo crear una aplicación básica utilizando Angular CLI.",
+      "title": "Resumen y cierre",
+      "content": "Con este tutorial, hemos cubierto lo básico de Angular. Desde la instalación hasta la creación de tu primera aplicación con componentes y rutas. A continuación, te doy un pequeño resumen de lo que aprendimos.",
       "subSections": [
         {
-          "title": "Alcance del tutorial",
-          "content": "Este tutorial cubre la instalación y configuración de Angular, la creación de un proyecto base, la adición de componentes, la configuración de rutas y la visualización de resultados en el navegador."
+          "title": "¿Qué hemos aprendido?",
+          "content": "Aprendimos a instalar Angular y a configurar un proyecto básico usando Angular CLI. Vimos cómo crear y modificar componentes, gestionar rutas, y visualizamos los resultados en el navegador. Lo esencial para empezar a trabajar con Angular."
         },
         {
-          "title": "Objetivos conseguidos",
-          "content": "Al finalizar este tutorial, habrás adquirido conocimientos básicos sobre el framework Angular, incluidos sus conceptos fundamentales como la creación de componentes, el uso de Angular CLI, la configuración de rutas y la visualización de aplicaciones en el navegador."
+          "title": "Próximos pasos",
+          "content": "Ahora que tienes lo básico, puedes empezar a experimentar con Angular. Intenta agregar más componentes, trabajar con formularios, o integrar APIs para hacer tu aplicación más dinámica."
+        },
+        {
+          "title": "¿Qué sigue después de esto?",
+          "content": "A medida que sigas practicando, profundiza en conceptos más avanzados como el manejo de estado, lazy loading de módulos y pruebas unitarias. Angular tiene muchas funcionalidades que puedes explorar para mejorar tus habilidades como desarrollador."
         }
       ]
     }
+
   ]
 
+// Calificación global del blog (0 a 5)
+  rating: number = 0; // Valor inicial de la calificación
 
-
-
-
-
-
-
+  // Comentarios
+  commentText: string = ''; // El texto del nuevo comentario
+  comments: { text: string, date: string }[] = []; // Lista de comentarios
 
   constructor() {}
 
@@ -199,4 +220,27 @@ export class HomeComponent implements OnInit {
       });
     });
   }
+
+  // Función para establecer la calificación
+  setRating(rating: number): void {
+    this.rating = rating;
+  }
+
+  // Función para verificar si una estrella está activa
+  isStarActive(index: number): boolean {
+    return index < this.rating;
+  }
+
+  // Función para agregar un comentario
+  addComment(): void {
+    if (this.commentText.trim() !== '') {
+      const newComment = {
+        text: this.commentText,
+        date: new Date().toLocaleString() // Fecha actual
+      };
+      this.comments.push(newComment);
+      this.commentText = ''; // Limpiar el campo de texto
+    }
+  }
+
 }
