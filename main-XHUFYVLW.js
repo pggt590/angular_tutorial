@@ -40,6 +40,24 @@ export class HomeComponent implements OnInit {
   highlightAllCode(): void {
     setTimeout(() => { ... });
   }
+}`}]},{title:"A\xF1adir la Funcionalidad de Comentarios",content:"Para permitir que los usuarios dejen comentarios al final del blog, necesitamos agregar un campo de entrada y un bot\xF3n para enviar los comentarios. Tambi\xE9n mostraremos una lista de comentarios que los usuarios pueden a\xF1adir. El siguiente c\xF3digo muestra c\xF3mo hacerlo:",subSections:[{title:"Agregar Campo de Comentario",content:"En `home.component.html`, a\xF1ade el siguiente c\xF3digo para crear un campo donde los usuarios puedan escribir sus comentarios y un bot\xF3n para enviarlos:",code:`<textarea [(ngModel)]="commentText" placeholder="Escribe tu comentario..." rows="4" class="comment-input"></textarea>
+<button (click)="addComment()">Agregar Comentario</button>`},{title:"Mostrar Comentarios",content:"Debajo del campo de comentarios, mostramos todos los comentarios a\xF1adidos. Para hacerlo, usamos una lista de comentarios en `home.component.ts`:",code:`<div *ngFor="let comment of comments">
+  <p>{{ comment.text }}</p>
+  <small>{{ comment.date }}</small>
+</div>`},{title:"L\xF3gica en TypeScript",content:"En `home.component.ts`, crea una funci\xF3n para agregar los comentarios a la lista y manejar el texto del comentario:",code:`export class HomeComponent implements OnInit {
+  commentText: string = '';
+  comments: { text: string, date: string }[] = [];
+
+  addComment(): void {
+    if (this.commentText.trim() !== '') {
+      const newComment = {
+        text: this.commentText,
+        date: new Date().toLocaleString()
+      };
+      this.comments.push(newComment);
+      this.commentText = '';
+    }
+  }
 }`}]},{title:"Configurar Rutas",content:"En esta secci\xF3n, aprender\xE1s a configurar las rutas en Angular utilizando la nueva caracter\xEDstica de componentes aut\xF3nomos, sin necesidad de un m\xF3dulo tradicional. Vamos a crear las rutas necesarias para cargar el `HomeComponent` como la vista principal.",subSections:[{title:"Crear archivo de rutas",content:"Primero, crea un archivo llamado `routes.ts` en la carpeta `app`. Este archivo contendr\xE1 las rutas de la aplicaci\xF3n. En \xE9l, definimos las rutas necesarias para cargar el componente `HomeComponent`.",code:`import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
