@@ -90,3 +90,8 @@
   color: white;
   padding: 20px;
 }
+
+
+.blog-section h2 {
+  color: #9138ff; /* Cambia el color a azul, por ejemplo */
+}
