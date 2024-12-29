@@ -7,7 +7,6 @@
   <h1>Crea un blog-tutorial con Angular</h1>
 
 
-
   <div *ngFor="let section of tutorialSections" class="blog-section">
     <h2>{{ section.title }}</h2>
     <p>{{ section.content }}</p>
@@ -24,6 +23,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Video de YouTube -->
+  <div class="video-container">
+
+    <div class="video">
+
+      <iframe
+        src="https://www.youtube.com/embed/Ata9cSC2WpM"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/lTgSVwaIqcU"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
 
   <!-- Sección de calificación del blog -->
   <div class="rating-container">
@@ -42,7 +64,8 @@
     <h3>Comentarios</h3>
 
     <!-- Formulario para agregar un comentario -->
-    <textarea [(ngModel)]="commentText" placeholder="Escribe tu comentario..." rows="4" class="comment-input"></textarea>
+    <textarea [(ngModel)]="commentText" placeholder="Escribe tu comentario..." rows="4"
+              class="comment-input"></textarea>
     <button (click)="addComment()" class="comment-submit">Agregar Comentario</button>
 
     <!-- Mostrar comentarios existentes -->
@@ -57,7 +80,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!-- Pie de página -->
